@@ -1,3 +1,4 @@
+"use server";
 import cloudinary from "@/utils/cloudinary";
 import type { ImageProps } from "@/models/Image";
 import Photos from "@/app/Photos";
@@ -9,6 +10,7 @@ export default async function Home() {
         .max_results(400)
         .execute();
     let reducedResults: ImageProps[] = [];
+    console.log(results);
 
     let i = 0;
     for (let result of results.resources) {
