@@ -1,5 +1,5 @@
 import cloudinary from "@/utils/cloudinary";
-import type { ImageProps } from "@/utils/types";
+import type { ImageProps } from "@/models/Image";
 import Photos from "@/app/Photos";
 
 export default async function Home() {
