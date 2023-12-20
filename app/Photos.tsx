@@ -8,14 +8,13 @@ import Modal from "@/components/Modal";
 import type { ImageProps } from "@/models/Image";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
-export default function Photos({
-    reducedResults,
-}: {
-    reducedResults: ImageProps;
-}) {
+interface PhotosProps {
+    reducedResults: ImageProps[];
+}
+export default function Photos({ reducedResults }: PhotosProps) {
     // const router = useRouter();
     // const { photoId } = router.q;
-    const images = reducedResults;
+    const images: ImageProps[] = reducedResults;
     const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
 
     const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
@@ -38,11 +37,12 @@ export default function Photos({
                         }}
                     />
                 )} */}
-                {images.slice(0, 1).map(({ public_id, format }) => (
+                {images.length > 0 && (
+                    // Directly access the first image without using map
                     <div className="h-[93vh] w-full relative flex flex-col items-center justify-center">
                         <Image
                             alt="Next.js Conf photo"
-                            src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
+                            src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${images[0].public_id}.${images[0].format}`}
                             layout="fill"
                             objectFit="cover"
                             priority
@@ -75,7 +75,7 @@ export default function Photos({
                             </svg>
                         </div>
                     </div>
-                ))}
+                )}
                 <nav className="sticky top-0 flex z-50 overflow-x-scroll lg:overflow-x-auto">
                     <div className="bg-gray-100 w-full flex items-center justify-start lg:justify-end px-3 lg:px-12 p-2">
                         <div className="flex lg:text-sm text-xs">
