@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Modal from "@/components/Modal";
+// import Modal from "@/components/Modal";
 import type { ImageProps } from "@/models/Image";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
