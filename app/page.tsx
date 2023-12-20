@@ -1,6 +1,6 @@
 import cloudinary from "@/utils/cloudinary";
 import type { ImageProps } from "@/utils/types";
-import Photos from "@/app/photos";
+import Photos from "@/app/Photos";
 
 export default async function Home() {
     const results = await cloudinary.v2.search

@@ -2,6 +2,7 @@
 const nextConfig = {
     images: {
         formats: ["image/avif", "image/webp"],
+        domains: ["cdn.pixabay.com"],
         remotePatterns: [
             {
                 protocol: "https",
