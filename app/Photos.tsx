@@ -48,7 +48,7 @@ export default function Photos({
                             priority
                         />
                         <div className="absolute bg-white/70 inset-0" />
-                        <h1 className="text-8xl text-black/70 z-10 font-thin drop-shadow-2xl">
+                        <h1 className="lg:text-8xl text-4xl text-black/70 z-10 font-thin drop-shadow-2xl">
                             Ogladaj zdjęcia
                         </h1>
                         <div className="z-10">
@@ -58,7 +58,7 @@ export default function Photos({
                                 viewBox="0 0 24 24"
                                 strokeWidth={0.3}
                                 stroke="currentColor"
-                                className="w-32 h-32 mt-12 cursor-pointer"
+                                className="lg:w-32 lg:h-32 w-12 h-20 mt-20 cursor-pointer"
                             >
                                 <path
                                     strokeLinecap="round"
@@ -76,18 +76,17 @@ export default function Photos({
                         </div>
                     </div>
                 ))}
-                <nav className="sticky top-0 flex z-50">
-                    <div className="bg-gray-100 w-full flex items-center justify-between px-12 p-2">
-                        <Link href="/">Jarek Olszewski</Link>
-                        <div className="flex text-sm">
-                            <button className="flex items-end justify-center space-x-1.5 hover:bg-white rounded-xl py-2 px-4">
+                <nav className="sticky top-0 flex z-50 overflow-x-scroll lg:overflow-x-auto">
+                    <div className="bg-gray-100 w-full flex items-center justify-start lg:justify-end px-3 lg:px-12 p-2">
+                        <div className="flex lg:text-sm text-xs">
+                            <button className="flex items-end justify-center space-x-2 hover:bg-white rounded-xl py-2 px-4 w-max">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="w-6 h-6"
+                                    className="w-5 h-5"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -98,14 +97,14 @@ export default function Photos({
 
                                 <span>Pobierz Zdjęcia</span>
                             </button>
-                            <button className="flex items-end justify-center space-x-1.5 hover:bg-white rounded-xl py-2 px-4">
+                            <button className="flex items-end justify-center space-x-2 hover:bg-white rounded-xl py-2 px-4 w-max">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="w-6 h-6"
+                                    className="w-5 h-5"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -115,14 +114,14 @@ export default function Photos({
                                 </svg>
                                 <span>Pobierz Ulubione</span>
                             </button>
-                            <button className="flex items-end justify-center space-x-1.5 hover:bg-white rounded-xl py-2 px-4">
+                            <button className="flex items-end justify-center space-x-2 hover:bg-white rounded-xl py-2 px-4 w-max">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="w-6 h-6"
+                                    className="w-5 h-5"
                                 >
                                     <path
                                         strokeLinecap="round"
@@ -133,14 +132,14 @@ export default function Photos({
 
                                 <span>Ulubione</span>
                             </button>
-                            <button className="flex items-end justify-center space-x-1.5 hover:bg-white rounded-xl py-2 px-4">
+                            <button className="flex items-end justify-center space-x-2 hover:bg-white rounded-xl py-2 px-4 w-max">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     strokeWidth={1.5}
                                     stroke="currentColor"
-                                    className="w-6 h-6"
+                                    className="w-5 h-5"
                                 >
                                     <path
                                         strokeLinecap="round"
