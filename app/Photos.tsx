@@ -16,7 +16,7 @@ export default function Photos({ res }: PhotosProps) {
                     <div className="h-[80vh] w-full relative flex flex-col items-center justify-center">
                         <img
                             alt="Next.js Conf photo"
-                            src={images[0].url}
+                            src={images[0].secure_url}
                             className="absolute w-full h-full object-cover"
                             loading="eager"
                         />
@@ -127,7 +127,7 @@ export default function Photos({ res }: PhotosProps) {
                     </div>
                 </nav>
                 <div className="columns-1 gap-2 sm:columns-2 xl:columns-3 2xl:columns-4 p-2">
-                    {images.slice(0, 4).map(({ id, url }) => (
+                    {images.slice(0, 4).map(({ id, secure_url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -138,13 +138,13 @@ export default function Photos({ res }: PhotosProps) {
                             <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={url}
+                                src={secure_url}
                                 height={500}
                                 width={500}
                             />
                         </Link>
                     ))}
-                    {images.slice(4).map(({ id, url }) => (
+                    {images.slice(4).map(({ id, secure_url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -155,7 +155,7 @@ export default function Photos({ res }: PhotosProps) {
                             <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={url}
+                                src={secure_url}
                                 height={500}
                                 width={500}
                             />
