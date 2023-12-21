@@ -167,14 +167,14 @@ export default function Photos({ res }: PhotosProps) {
                             shallow
                             className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                         >
-                            <Image
+                            <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                                 style={{
                                     transform: "translate3d(0, 0, 0)",
                                 }}
                                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
-                                width={420}
+                                width={520}
                                 height={380}
                                 sizes="(max-width: 640px) 60vw,
                   (max-width: 1280px) 50vw,
