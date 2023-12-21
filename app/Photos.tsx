@@ -1,7 +1,7 @@
 "use client";
 
 // import { useRouter } from "next/navigation";
-import { CldImage } from "next-cloudinary";
+// import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 // import Modal from "@/components/Modal";
@@ -25,8 +25,8 @@ export default function Photos({ res }: PhotosProps) {
                             objectFit="cover"
                             priority
                         />
-                        <div className="absolute bg-white/70 inset-0" />
-                        <h1 className="lg:text-8xl text-4xl text-black/70 z-10 font-thin drop-shadow-2xl">
+                        <div className="absolute bg-gradient-to-t from-white via-transparent to-white inset-0" />
+                        <h1 className="lg:text-9xl -tracking-wider text-5xl text-white/60 bg-blend-color-burn z-10 font-light drop-shadow-2xl">
                             Ogladaj zdjęcia
                         </h1>
                         <div className="z-10">
