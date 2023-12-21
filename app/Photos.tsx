@@ -31,7 +31,7 @@ export default function Photos({ res }: PhotosProps) {
                                 viewBox="0 0 24 24"
                                 strokeWidth={0.3}
                                 stroke="currentColor"
-                                className="lg:w-32 lg:h-32 w-12 h-20 mt-20 cursor-pointer"
+                                className="lg:w-32 lg:h-32 w-24 h-24 mt-20 cursor-pointer"
                             >
                                 <path
                                     strokeLinecap="round"
