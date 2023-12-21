@@ -9,12 +9,12 @@ import type { ImageProps } from "@/models/Image";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
 interface PhotosProps {
-    reducedResults: ImageProps[];
+    res: ImageProps[];
 }
-export default function Photos({ reducedResults }: PhotosProps) {
+export default function Photos({ res }: PhotosProps) {
     // const router = useRouter();
     // const { photoId } = router.q;
-    const images: ImageProps[] = reducedResults;
+    const images: ImageProps[] = res;
     const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
 
     const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);

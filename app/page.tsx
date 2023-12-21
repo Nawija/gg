@@ -9,20 +9,9 @@ export default async function Home() {
         .sort_by("public_id", "desc")
         .max_results(400)
         .execute();
-    let reducedResults: ImageProps[] = [];
-    console.log(results);
+        const res = results.resources
+        console.log(res)
+   
 
-    let i = 0;
-    for (let result of results.resources) {
-        reducedResults.push({
-            id: i,
-            height: result.height,
-            width: result.width,
-            public_id: result.public_id,
-            format: result.format,
-        });
-        i++;
-    }
-
-    return <Photos reducedResults={reducedResults} />;
+    return <Photos res={res} />;
 }
