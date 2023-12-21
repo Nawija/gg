@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import cloudinary from "@/utils/cloudinary";
 import Photos from "@/app/Photos";
 
@@ -10,7 +9,6 @@ export default async function Home() {
         .sort_by("public_id", "desc")
         .max_results(400)
         .execute();
-    revalidatePath("/");
     const res = results.resources;
 
     return <Photos res={res} />;

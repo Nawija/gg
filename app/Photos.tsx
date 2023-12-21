@@ -10,34 +10,18 @@ interface PhotosProps {
     res: ImageProps[];
 }
 export default function Photos({ res }: PhotosProps) {
-    // const router = useRouter();
-    // const { photoId } = router.q;
     const images: ImageProps[] = res;
-
-    // useEffect(() => {
-    //     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
-    //     if (lastViewedPhoto && !photoId) {
-    //         lastViewedPhotoRef.current.scrollIntoView({ block: "center" });
-    //         setLastViewedPhoto(null);
-    //     }
-    // }, [photoId, lastViewedPhoto, setLastViewedPhoto]);
     return (
         <>
             <main className="mx-auto max-w-[1960px]">
-                {/* {photoId && (
-                    <Modal
-                        images={images}
-                        onClose={() => {
-                            setLastViewedPhoto(photoId);
-                        }}
-                    />
-                )} */}
                 {images.length > 0 && (
-                    // Directly access the first image without using map
-                    <div className="h-[94vh] w-full relative flex flex-col items-center justify-center">
-                        <img
+                    <div className="h-[80vh] w-full relative flex flex-col items-center justify-center">
+                        <Image
                             alt="Next.js Conf photo"
                             src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${images[0].public_id}.${images[0].format}`}
+                            layout="fill"
+                            objectFit="cover"
+                            priority
                         />
                         <div className="absolute bg-white/70 inset-0" />
                         <h1 className="lg:text-8xl text-4xl text-black/70 z-10 font-thin drop-shadow-2xl">
@@ -68,7 +52,7 @@ export default function Photos({ res }: PhotosProps) {
                         </div>
                     </div>
                 )}
-                <nav className="sticky top-0 flex z-50 overflow-x-scroll lg:overflow-x-auto bg-gray-100/80 backdrop-blur-sm">
+                <nav className="sticky top-0 flex z-50 overflow-x-scroll lg:overflow-x-auto bg-gray-100/90 backdrop-blur-sm">
                     <div className=" w-full flex items-center justify-start lg:justify-end px-3 lg:px-12 p-1.5">
                         <div className="flex lg:text-sm text-xs">
                             <button className="flex items-end justify-center space-x-2 hover:bg-white rounded-xl py-2 px-4 w-max">
@@ -145,19 +129,39 @@ export default function Photos({ res }: PhotosProps) {
                         </div>
                     </div>
                 </nav>
-                <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4 p-4">
-                    {images.map(({ id, public_id, format }) => (
+                <div className="columns-1 gap-2 sm:columns-2 xl:columns-3 2xl:columns-4 p-2">
+                    {images.slice(0, 4).map(({ id, public_id, format }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
                             as={`/p/${id}`}
                             shallow
-                            className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+                            className="after:content group relative mb-2 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                         >
-                            <img
+                            <Image
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
+                                height={500}
+                                width={500}
+                                priority
+                            />
+                        </Link>
+                    ))}
+                    {images.slice(4).map(({ id, public_id, format }) => (
+                        <Link
+                            key={id}
+                            href={`/?photoId=${id}`}
+                            as={`/p/${id}`}
+                            shallow
+                            className="after:content group relative mb-2 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
+                        >
+                            <Image
+                                alt="Next.js Conf photo"
+                                className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
+                                height={500}
+                                width={500}
                             />
                         </Link>
                     ))}
