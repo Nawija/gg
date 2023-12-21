@@ -1,10 +1,6 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
-// import { CldImage } from "next-cloudinary";
-import Image from "next/image";
 import Link from "next/link";
-// import Modal from "@/components/Modal";
 import type { ImageProps } from "@/components/models/Image";
 
 interface PhotosProps {
@@ -18,12 +14,11 @@ export default function Photos({ res }: PhotosProps) {
             <main className="mx-auto max-w-[1960px]">
                 {images.length > 0 && (
                     <div className="h-[80vh] w-full relative flex flex-col items-center justify-center">
-                        <Image
+                        <img
                             alt="Next.js Conf photo"
-                            src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${images[0].public_id}.${images[0].format}`}
-                            layout="fill"
-                            objectFit="cover"
-                            priority
+                            src={images[0].url}
+                            className="absolute w-full h-full object-cover"
+                            loading="eager"
                         />
                         <div className="absolute bg-gray-100/80 inset-0" />
                         <h1 className="lg:text-8xl -tracking-wider text-5xl text-gray-800 bg-blend-color-burn z-10 font-extralight drop-shadow-2xl">
@@ -140,7 +135,7 @@ export default function Photos({ res }: PhotosProps) {
                             shallow
                             className="after:content group relative mb-2 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                         >
-                            <Image
+                            <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                                 src={url}
@@ -157,7 +152,7 @@ export default function Photos({ res }: PhotosProps) {
                             shallow
                             className="after:content group relative mb-2 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                         >
-                            <Image
+                            <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
                                 src={url}
