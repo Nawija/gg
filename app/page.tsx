@@ -1,6 +1,5 @@
 "use server";
 import cloudinary from "@/utils/cloudinary";
-import type { ImageProps } from "@/models/Image";
 import Photos from "@/app/Photos";
 
 export default async function Home() {
@@ -10,8 +9,6 @@ export default async function Home() {
         .max_results(400)
         .execute();
         const res = results.resources
-        console.log(res)
    
-
     return <Photos res={res} />;
 }

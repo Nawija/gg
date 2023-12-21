@@ -1,12 +1,10 @@
 "use client";
 
 // import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 // import Modal from "@/components/Modal";
-import type { ImageProps } from "@/models/Image";
-import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
+import type { ImageProps } from "@/components/models/Image";
 
 interface PhotosProps {
     res: ImageProps[];
@@ -15,9 +13,6 @@ export default function Photos({ res }: PhotosProps) {
     // const router = useRouter();
     // const { photoId } = router.q;
     const images: ImageProps[] = res;
-    const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
-
-    const lastViewedPhotoRef = useRef<HTMLAnchorElement>(null);
 
     // useEffect(() => {
     //     // This effect keeps track of the last viewed photo in the modal to keep the index page in sync when the user navigates back
@@ -40,12 +35,9 @@ export default function Photos({ res }: PhotosProps) {
                 {images.length > 0 && (
                     // Directly access the first image without using map
                     <div className="h-[94vh] w-full relative flex flex-col items-center justify-center">
-                        <Image
+                        <img
                             alt="Next.js Conf photo"
                             src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${images[0].public_id}.${images[0].format}`}
-                            layout="fill"
-                            objectFit="cover"
-                            priority
                         />
                         <div className="absolute bg-white/70 inset-0" />
                         <h1 className="lg:text-8xl text-4xl text-black/70 z-10 font-thin drop-shadow-2xl">
@@ -159,27 +151,13 @@ export default function Photos({ res }: PhotosProps) {
                             key={id}
                             href={`/?photoId=${id}`}
                             as={`/p/${id}`}
-                            ref={
-                                id === Number(lastViewedPhoto)
-                                    ? lastViewedPhotoRef
-                                    : null
-                            }
                             shallow
                             className="after:content group relative mb-5 block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
                         >
                             <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                style={{
-                                    transform: "translate3d(0, 0, 0)",
-                                }}
                                 src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
-                                width={520}
-                                height={380}
-                                sizes="(max-width: 640px) 60vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
                             />
                         </Link>
                     ))}
