@@ -1,6 +1,7 @@
 "use client";
 
 // import { useRouter } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 // import Modal from "@/components/Modal";
@@ -11,6 +12,7 @@ interface PhotosProps {
 }
 export default function Photos({ res }: PhotosProps) {
     const images: ImageProps[] = res;
+    console.log(images);
     return (
         <>
             <main className="mx-auto max-w-[1960px]">
@@ -130,7 +132,7 @@ export default function Photos({ res }: PhotosProps) {
                     </div>
                 </nav>
                 <div className="columns-1 gap-2 sm:columns-2 xl:columns-3 2xl:columns-4 p-2">
-                    {images.slice(0, 4).map(({ id, public_id, format }) => (
+                    {images.slice(0, 4).map(({ id, url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -141,14 +143,13 @@ export default function Photos({ res }: PhotosProps) {
                             <Image
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
+                                src={url}
                                 height={500}
                                 width={500}
-                                priority
                             />
                         </Link>
                     ))}
-                    {images.slice(4).map(({ id, public_id, format }) => (
+                    {images.slice(4).map(({ id, url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -159,7 +160,7 @@ export default function Photos({ res }: PhotosProps) {
                             <Image
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/${public_id}.${format}`}
+                                src={url}
                                 height={500}
                                 width={500}
                             />
