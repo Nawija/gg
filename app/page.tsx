@@ -27,7 +27,7 @@ const fetchPhotoDatoCms = async () => {
 
 export default async function Home() {
     const data: ImageDatoCms[] = await fetchPhotoDatoCms();
-    const images: ImageCarousel[] = data.map((item) => ({
+    const images = data.map((item) => ({
         original: item.url,
         thumbnail: item.url,
     }));

@@ -4,7 +4,7 @@ import ImageGallery from "react-image-gallery";
 // import "react-image-gallery/styles/css/image-gallery.css";
 
 import Link from "next/link";
-import { ImageDatoCms } from "@/components/models/Image";
+import { ImageDatoCms, ImageCarousel } from "@/components/models/Image";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -13,6 +13,7 @@ export default function Photos({
     images,
 }: {
     data: ImageDatoCms[];
+    images: ImageCarousel[];
 }) {
     const [galleryCarousel, setGalleryCarousel] = useState(false);
 
