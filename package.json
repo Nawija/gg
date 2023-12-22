@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.1.1",
+    "@react-typed-hooks/use-key-press": "^1.0.5",
     "cloudinary": "^1.41.1",
     "framer-motion": "^10.16.16",
     "fs": "^0.0.1-security",

@@ -1,7 +1,6 @@
 "use client";
 
 import ImageGallery from "react-image-gallery";
-import useKeypress from "react-use-keypress";
 // import "react-image-gallery/styles/css/image-gallery.css";
 
 import Link from "next/link";
@@ -21,10 +20,6 @@ export default function Photos({
     const hangleGalleryCarousel = () => {
         setGalleryCarousel(!galleryCarousel);
     };
-
-    useKeypress("Escape", () => {
-        setGalleryCarousel(false);
-    });
 
     return (
         <>
