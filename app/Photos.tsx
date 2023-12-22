@@ -13,7 +13,6 @@ export default function Photos({
     images,
 }: {
     data: ImageDatoCms[];
-    images: ImageDatoCms[];
 }) {
     const [galleryCarousel, setGalleryCarousel] = useState(false);
 
