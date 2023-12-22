@@ -31,7 +31,5 @@ export default async function Home() {
         original: item.url,
         thumbnail: item.url,
     }));
-
-    console.log(images);
     return <Photos data={data} images={images} />;
 }

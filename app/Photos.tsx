@@ -200,7 +200,7 @@ export default function Photos({
                 <div className="relavite">
                     <ImageGallery
                         autoPlay
-                        // thumbnailPosition={"right"}
+                        thumbnailPosition={"right"}
                         items={images}
                     />
                 </div>
