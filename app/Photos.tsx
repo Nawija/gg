@@ -23,11 +23,11 @@ export default function Photos({
 
     return (
         <>
-            {galleryCarousel ? (
+            {!galleryCarousel ? (
                 <>
-                    <main className="mx-auto max-w-[1960px] bg-white">
+                    <main className="mx-auto max-w-[1960px]">
                         {data.length > 0 && (
-                            <div className="relative h-[91vh] w-full flex flex-col items-center justify-center">
+                            <div className="relative h-[60vh] lg:h-[75vh w-full flex flex-col items-center justify-center">
                                 <Image
                                     alt="Next.js Conf photo"
                                     src={data[0].url}
@@ -35,34 +35,36 @@ export default function Photos({
                                     objectFit="cover"
                                     priority
                                 />
-                                <div className="absolute bg-gray-100/80 inset-0" />
-                                <h1 className="lg:text-8xl uppercase tracking-wider text-5xl text-gray-900 bg-blend-color-burn text-center  font-extralight drop-shadow-2xl">
-                                    Ogladaj zdjęcia
-                                </h1>
-                                <button
-                                    onClick={hangleGalleryCarousel}
-                                    className="group z-10"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        className="lg:w-32 lg:h-32 w-24 h-24 mt-16 cursor-pointer"
+                                <div className="absolute bg-gradient-to-t from-white inset-0" />
+                                <div className="z-10 flex items-center justify-center text-center flex-col mt-20">
+                                    <button
+                                        onClick={hangleGalleryCarousel}
+                                        className="group z-10"
                                     >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                            className="fill-gray-900 group-hover:fill-gray-700 transition-colors"
-                                        />
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
-                                            className="fill-white"
-                                        />
-                                    </svg>
-                                </button>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            className="lg:w-32 lg:h-32 w-24 h-24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                                className="fill-gray-900 group-hover:fill-gray-700 transition-colors"
+                                            />
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"
+                                                className="fill-white"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <h1 className="lg:text-8xl uppercase tracking-wider text-4xl text-gray-900 bg-blend-color-burn text-center lg:font-extralight drop-shadow-2xl mt-2">
+                                        Ogladaj zdjęcia
+                                    </h1>
+                                </div>
                             </div>
                         )}
 
@@ -144,14 +146,14 @@ export default function Photos({
                             </div>
                         </nav>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 px-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 px-4">
                             {data.map(({ id, url }) => (
                                 <Link
                                     key={id}
                                     href={`/?photoId=${id}`}
                                     as={`/p/${id}`}
                                     shallow
-                                    className="after:content group relative block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight h-80"
+                                    className="after:content group relative block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight h-52"
                                 >
                                     <Image
                                         alt="Next.js Conf photo"
@@ -200,8 +202,28 @@ export default function Photos({
                 <div className="relavite">
                     <ImageGallery
                         autoPlay
+                        showThumbnails={false}
                         items={images}
                     />
+                    <button
+                        className="outline-white outline-2 p-1 text-black absolute top-2 right-2 z-20"
+                        onClick={hangleGalleryCarousel}
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18 18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
                 </div>
             )}
         </>
