@@ -23,7 +23,7 @@ export default function Photos({
 
     return (
         <>
-            {!galleryCarousel ? (
+            {galleryCarousel ? (
                 <>
                     <main className="mx-auto max-w-[1960px] bg-white">
                         {data.length > 0 && (
@@ -36,7 +36,7 @@ export default function Photos({
                                     priority
                                 />
                                 <div className="absolute bg-gray-100/80 inset-0" />
-                                <h1 className="lg:text-8xl uppercase tracking-wider text-5xl text-gray-900 bg-blend-color-burn  font-extralight drop-shadow-2xl">
+                                <h1 className="lg:text-8xl uppercase tracking-wider text-5xl text-gray-900 bg-blend-color-burn text-center  font-extralight drop-shadow-2xl">
                                     Ogladaj zdjęcia
                                 </h1>
                                 <button
@@ -200,7 +200,6 @@ export default function Photos({
                 <div className="relavite">
                     <ImageGallery
                         autoPlay
-                        thumbnailPosition={"right"}
                         items={images}
                     />
                 </div>

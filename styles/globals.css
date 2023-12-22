@@ -137,6 +137,7 @@
 }
 .image-gallery-content .image-gallery-slide .image-gallery-image {
     max-height: calc(100vh - 80px);
+    min-height: 100vh;
 }
 .image-gallery-content.image-gallery-thumbnails-left
     .image-gallery-slide
@@ -145,6 +146,7 @@
     .image-gallery-slide
     .image-gallery-image {
     max-height: 100vh;
+    min-height: 100vh;
 }
 .image-gallery-slide-wrapper {
     position: relative;
