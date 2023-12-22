@@ -153,16 +153,32 @@ export default function Photos({
                                     href={`/?photoId=${id}`}
                                     as={`/p/${id}`}
                                     shallow
-                                    className="after:content group relative block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight h-52"
+                                    className="after:content group relative block w-full h-52"
                                 >
                                     <Image
                                         alt="Next.js Conf photo"
-                                        className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                                        className="transform rounded-lg brightness-90 transition group-hover:brightness-100"
                                         src={url}
                                         fill={true}
                                         style={{ objectFit: "cover" }}
                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     />
+                                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity inset-0 bg-gradient-to-t from-white/70">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth={1.3}
+                                            stroke="currentColor"
+                                            className="w-6 h-6 absolute right-2 bottom-2"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                                            />
+                                        </svg>
+                                    </div>
                                 </Link>
                             ))}
                         </div>
