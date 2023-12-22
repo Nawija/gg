@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ImageDatoCms } from "@/components/models/Image";
+import Image from "next/image";
 
 export default function Photos({ data }: { data: ImageDatoCms[] }) {
     return (
@@ -9,12 +10,11 @@ export default function Photos({ data }: { data: ImageDatoCms[] }) {
             <main className="mx-auto max-w-[1960px]">
                 {data.length > 0 && (
                     <div className="h-[80vh] w-full relative flex flex-col items-center justify-center">
-                        <img
-                            width="960"
-                            height="600"
+                        <Image
                             alt="Next.js Conf photo"
                             src={data[0].url}
-                            className="absolute w-full h-full object-cover"
+                            layout="fill"
+                            objectFit="cover"
                         />
                         <div className="absolute bg-gray-100/80 inset-0" />
                         <h1 className="lg:text-8xl -tracking-wider text-5xl text-gray-800 bg-blend-color-burn z-10 font-extralight drop-shadow-2xl">
