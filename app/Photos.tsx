@@ -1,24 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import type { ImageProps } from "@/components/models/Image";
 
-interface PhotosProps {
-    res: ImageProps[];
-}
-export default function Photos({ res }: PhotosProps) {
-    const images: ImageProps[] = res;
-    console.log(images);
+export default function Photos({ data }) {
     return (
         <>
             <main className="mx-auto max-w-[1960px]">
-                {images.length > 0 && (
+                {data.length > 0 && (
                     <div className="h-[80vh] w-full relative flex flex-col items-center justify-center">
                         <img
+                            width="960"
+                            height="600"
                             alt="Next.js Conf photo"
-                            src={images[0].secure_url}
+                            src={data[0].url}
                             className="absolute w-full h-full object-cover"
-                            loading="eager"
                         />
                         <div className="absolute bg-gray-100/80 inset-0" />
                         <h1 className="lg:text-8xl -tracking-wider text-5xl text-gray-800 bg-blend-color-burn z-10 font-extralight drop-shadow-2xl">
@@ -127,7 +122,7 @@ export default function Photos({ res }: PhotosProps) {
                     </div>
                 </nav>
                 <div className="columns-1 gap-2 sm:columns-2 xl:columns-3 2xl:columns-4 p-2">
-                    {images.slice(0, 4).map(({ id, secure_url }) => (
+                    {data.slice(0, 4).map(({ id, url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -138,13 +133,13 @@ export default function Photos({ res }: PhotosProps) {
                             <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={secure_url}
+                                src={url}
                                 height={500}
                                 width={500}
                             />
                         </Link>
                     ))}
-                    {images.slice(4).map(({ id, secure_url }) => (
+                    {data.slice(4).map(({ id, url }) => (
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
@@ -155,7 +150,7 @@ export default function Photos({ res }: PhotosProps) {
                             <img
                                 alt="Next.js Conf photo"
                                 className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
-                                src={secure_url}
+                                src={url}
                                 height={500}
                                 width={500}
                             />

@@ -1,15 +1,32 @@
-"use server";
-
-import cloudinary from "@/utils/cloudinary";
 import Photos from "@/app/Photos";
+import type { ImageDatoCms } from "@/components/models/Image";
+
+const fetchPhotoDatoCms = async () => {
+    const res = await fetch("https://graphql.datocms.com/", {
+        next: { revalidate: 3 },
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+        },
+        body: JSON.stringify({
+            query: ` {
+                reportazZChrztu {
+                  img {
+                    id
+                    url
+                  }
+                }
+              }`,
+        }),
+    });
+    const json = await res.json();
+    return json.data.reportazZChrztu.img;
+};
 
 export default async function Home() {
-    const results = await cloudinary.v2.search
-        .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-        .sort_by("public_id", "desc")
-        .max_results(400)
-        .execute();
-    const res = results.resources;
+    const data: ImageDatoCms[] = await fetchPhotoDatoCms();
 
-    return <Photos res={res} />;
+    return <Photos data={data} />;
 }
