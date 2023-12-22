@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { ImageDatoCms } from "@/components/models/Image";
 
-export default function Photos({ data }) {
+export default function Photos({ data }: { data: ImageDatoCms[] }) {
     return (
         <>
             <main className="mx-auto max-w-[1960px]">
