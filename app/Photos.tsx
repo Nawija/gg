@@ -76,7 +76,7 @@ export default function Photos({ data }: { data: ImageDatoCms[] }) {
                             >
                                 <button
                                     onClick={scrollToGallery}
-                                    className="border-2 py-2 px-4 hover:bg-white hover:text-black transition-colors text-sm font-medium"
+                                    className="border-2 py-2 px-4 lg:hover:bg-white lg:hover:text-black transition-colors text-sm lg:text-white bg-white lg:bg-transparent text-black font-medium"
                                 >
                                     Zobacz Galerie
                                 </button>
