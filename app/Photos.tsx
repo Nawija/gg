@@ -1,23 +1,14 @@
 "use client";
 
-import ImageGallery from "react-image-gallery";
-// import "react-image-gallery/styles/css/image-gallery.css";
-
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import Link from "next/link";
-import { ImageDatoCms, ImageCarousel } from "@/components/models/Image";
+import { ImageDatoCms } from "@/components/models/Image";
 import Image from "next/image";
-import { useState } from "react";
 
-export default function Photos({
-    data,
-
-}: {
-    data: ImageDatoCms[];
-}) {
-    const galleryRef = useRef(null);
-    const ref = useRef(null);
+export default function Photos({ data }: { data: ImageDatoCms[] }) {
+    const galleryRef = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref, { once: true });
 
     const scrollToGallery = () => {
@@ -99,7 +90,9 @@ export default function Photos({
                     className="flex z-50 overflow-x-scroll lg:overflow-x-auto bg-white/60 backdrop-blur-sm"
                 >
                     <div className=" w-full flex items-center justify-between px-5 lg:px-12 py-3">
-                        <Link className="font-light" href="/">Jarek Olszewski</Link>
+                        <Link className="font-light" href="/">
+                            Jarek Olszewski
+                        </Link>
                         <div className="flex lg:text-sm text-xs">
                             <button className="flex items-center justify-center space-x-1 hover:bg-gray-100 transition-colors rounded-xl py-2 md:px-3 px-2">
                                 <svg
