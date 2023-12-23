@@ -12,18 +12,16 @@ import { useState } from "react";
 
 export default function Photos({
     data,
-    images,
+
 }: {
     data: ImageDatoCms[];
-    images: ImageCarousel[];
 }) {
-    const [galleryCarousel, setGalleryCarousel] = useState(false);
     const galleryRef = useRef(null);
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
 
     const scrollToGallery = () => {
-        if (!galleryCarousel && galleryRef.current) {
+        if (galleryRef.current) {
             window.scrollTo({
                 top: galleryRef.current.offsetTop,
                 behavior: "smooth",
