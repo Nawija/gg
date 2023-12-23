@@ -41,56 +41,52 @@ export default function PhotoId({
 
     return (
         <div className="flex items-center justify-center h-screen w-full relative overflow-hidden">
-            <div
-                className={`p-1 flex items-center justify-center text-center mx-auto top-0 left-0 h-full w-full relative`}
+            <Link
+                href={`/${nextPhotoId}`}
+                className={`${arrowBtn} lg:left-2 left-0`}
             >
-                <Link
-                    href={`/${nextPhotoId}`}
-                    className={`${arrowBtn} lg:left-2 left-0`}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
-                        />
-                    </svg>
-                </Link>
-                <div className="w-full h-full relative flex items-center justify-center -z-10">
-                    <Image
-                        src={photos[photoIndex].url}
-                        alt="photo"
-                        layout="fill"
-                        objectFit="contain"
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
                     />
-                </div>
-                <Link
-                    href={`/${prevPhotoId}`}
-                    className={`${arrowBtn} lg:right-2 right-0`}
+                </svg>
+            </Link>
+
+                <Image
+                    src={photos[photoIndex].url}
+                    alt="photo"
+                    layout="fill"
+                    objectFit="contain"
+                />
+
+            <Link
+                href={`/${prevPhotoId}`}
+                className={`${arrowBtn} lg:right-2 right-0`}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-5 h-5"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-                        />
-                    </svg>
-                </Link>
-            </div>
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+                    />
+                </svg>
+            </Link>
         </div>
     );
 }
