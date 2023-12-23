@@ -4,10 +4,6 @@ export interface ImageDatoCms {
     format: string;
     alt: string;
 }
-export interface ImageCarousel {
-    original: string;
-    thumbnail: string;
-}
 // export interface SharedModalProps {
 //     index: number;
 //     images?: ImageProps[];

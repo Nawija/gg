@@ -1,5 +1,5 @@
 import Photos from "@/app/Photos";
-import type { ImageDatoCms, ImageCarousel } from "@/components/models/Image";
+import type { ImageDatoCms } from "@/components/models/Image";
 
 const fetchPhotoDatoCms = async () => {
     const res = await fetch("https://graphql.datocms.com/", {
