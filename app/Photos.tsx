@@ -183,7 +183,7 @@ export default function Photos({ data }: { data: ImageDatoCms[] }) {
                         <Link
                             key={id}
                             href={`/?photoId=${id}`}
-                            as={`/p/${id}`}
+                            as={`/${id}`}
                             shallow
                             className="after:content group relative block w-full h-52 overflow-hidden"
                         >
