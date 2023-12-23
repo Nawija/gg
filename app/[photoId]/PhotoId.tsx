@@ -4,16 +4,22 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+interface PhotoIdProps {
+    photos: { id: string; url: string }[];
+    nextPhotoId: string;
+    prevPhotoId: string;
+    photoIndex: number;
+}
 export default function PhotoId({
     photos,
     nextPhotoId,
     prevPhotoId,
     photoIndex,
-}) {
+}: PhotoIdProps) {
     const router = useRouter();
 
     useEffect(() => {
-        const handleKeyPress = (e) => {
+        const handleKeyPress = (e: KeyboardEvent) => {
             if (e.key === "ArrowLeft") {
                 router.push(`/${nextPhotoId}`);
             } else if (e.key === "ArrowRight") {
