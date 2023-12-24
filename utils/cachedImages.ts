@@ -3,7 +3,7 @@ let cachedResults;
 export default async function getResults() {
     if (!cachedResults) {
         const res = await fetch("https://graphql.datocms.com/", {
-            next: { revalidate: 3 },
+            next: { revalidate: 60 },
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
