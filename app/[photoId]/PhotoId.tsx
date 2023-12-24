@@ -10,6 +10,7 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { wrap } from "popmotion";
+
 const variants = {
     enter: (direction: number) => {
         return {
@@ -48,6 +49,8 @@ export default function PhotoId({
     prevPhotoId,
     photoIndex,
 }: PhotoIdProps) {
+    const ref = useRef<HTMLDivElement | null>(null);
+    const isInView = useInView(ref, { once: true });
     const router = useRouter();
     const [[page, direction], setPage] = useState([0, 0]);
     const imageIndex = wrap(0, photos.length, page);
@@ -77,10 +80,18 @@ export default function PhotoId({
         "p-2 border font-semibold rounded-lg bg-gray-100 text-gray-900 absolute top-[80%] lg:top-1/2 hover:bg-white hover:text-red-600 transition-colors";
 
     return (
-        <div className="flex items-center justify-center h-screen w-full relative overflow-hidden">
+        <div
+            className="flex items-center justify-center h-screen w-full relative overflow-hidden"
+            ref={ref}
+            style={{
+                transform: isInView ? "none" : "translateX(200px)",
+                opacity: isInView ? 1 : 0,
+                transition: "all 0.2s cubic-bezier(0.17, 0.55, 0.55, 1)",
+            }}
+        >
             <Link
                 href={`/${nextPhotoId}`}
-                className={`${arrowBtn} lg:left-2 left-0`}
+                className={`${arrowBtn} lg:left-2 left-0 z-10`}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +117,7 @@ export default function PhotoId({
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                         key={page}
-                        src={images[imageIndex]}
+                        src={photos[photoIndex].url}
                         custom={direction}
                         variants={variants}
                         initial="enter"
@@ -136,7 +147,7 @@ export default function PhotoId({
 
             <Link
                 href={`/${prevPhotoId}`}
-                className={`${arrowBtn} lg:right-2 right-0`}
+                className={`${arrowBtn} lg:right-2 right-0 z-10`}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
