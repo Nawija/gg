@@ -1,17 +1,29 @@
-// import cloudinary from './cloudinary'
+let cachedResults;
 
-// let cachedResults
+export default async function getResults() {
+    if (!cachedResults) {
+        const res = await fetch("https://graphql.datocms.com/", {
+            next: { revalidate: 3 },
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${process.env.NEXT_DATOCMS_API_TOKEN}`,
+            },
+            body: JSON.stringify({
+                query: ` {
+                    reportazZChrztu {
+                      img {
+                        id
+                        url
+                      }
+                    }
+                }`,
+            }),
+        });
+        const json = await res.json();
+        cachedResults = json.data.reportazZChrztu.img;
+    }
 
-// export default async function getResults() {
-//   if (!cachedResults) {
-//     const fetchedResults = await cloudinary.v2.search
-//       .expression(`folder:${process.env.CLOUDINARY_FOLDER}/*`)
-//       .sort_by('public_id', 'desc')
-//       .max_results(400)
-//       .execute()
-
-//     cachedResults = fetchedResults
-//   }
-
-//   return cachedResults
-// }
+    return cachedResults;
+}
