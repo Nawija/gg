@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { useEffect } from "react";
+import {
+    motion,
+    AnimatePresence,
+    useInView,
+    MotionConfig,
+} from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-
+import { wrap } from "popmotion";
 const variants = {
     enter: (direction: number) => {
         return {
@@ -47,6 +50,7 @@ export default function PhotoId({
 }: PhotoIdProps) {
     const router = useRouter();
     const [[page, direction], setPage] = useState([0, 0]);
+    const imageIndex = wrap(0, photos.length, page);
 
     const paginate = (newDirection: number) => {
         setPage([page + newDirection, newDirection]);
@@ -93,12 +97,16 @@ export default function PhotoId({
                     />
                 </svg>
             </Link>
-
-            <AnimatePresence initial={false} custom={direction}>
+            <MotionConfig
+                transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 },
+                }}
+            >
                 <AnimatePresence initial={false} custom={direction}>
                     <motion.img
                         key={page}
-                        src={photos[photoIndex].url}
+                        src={images[imageIndex]}
                         custom={direction}
                         variants={variants}
                         initial="enter"
@@ -124,7 +132,7 @@ export default function PhotoId({
                         }}
                     />
                 </AnimatePresence>
-            </AnimatePresence>
+            </MotionConfig>
 
             <Link
                 href={`/${prevPhotoId}`}

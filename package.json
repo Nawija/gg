@@ -17,6 +17,7 @@
     "fs": "^0.0.1-security",
     "next": "14.0.4",
     "next-cloudinary": "^5.16.0",
+    "popmotion": "^11.0.5",
     "react": "^18",
     "react-dom": "^18",
     "react-hooks-global-state": "^2.1.0",
