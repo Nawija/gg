@@ -1,9 +1,37 @@
 "use client";
 
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+
+const variants = {
+    enter: (direction: number) => {
+        return {
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction: number) => {
+        return {
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+};
+
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+};
 
 interface PhotoIdProps {
     photos: { id: string; url: string }[];
@@ -18,6 +46,11 @@ export default function PhotoId({
     photoIndex,
 }: PhotoIdProps) {
     const router = useRouter();
+    const [[page, direction], setPage] = useState([0, 0]);
+
+    const paginate = (newDirection: number) => {
+        setPage([page + newDirection, newDirection]);
+    };
 
     useEffect(() => {
         const handleKeyPress = (e: KeyboardEvent) => {
@@ -61,12 +94,37 @@ export default function PhotoId({
                 </svg>
             </Link>
 
-                <Image
-                    src={photos[photoIndex].url}
-                    alt="photo"
-                    layout="fill"
-                    objectFit="contain"
-                />
+            <AnimatePresence initial={false} custom={direction}>
+                <AnimatePresence initial={false} custom={direction}>
+                    <motion.img
+                        key={page}
+                        src={photos[photoIndex].url}
+                        custom={direction}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: "spring", stiffness: 300, damping: 30 },
+                            opacity: { duration: 0.2 },
+                        }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={(e, { offset, velocity }) => {
+                            const swipe = swipePower(offset.x, velocity.x);
+
+                            if (swipe < -swipeConfidenceThreshold) {
+                                paginate(1);
+                                router.push(`/${nextPhotoId}`);
+                            } else if (swipe > swipeConfidenceThreshold) {
+                                paginate(-1);
+                                router.push(`/${prevPhotoId}`);
+                            }
+                        }}
+                    />
+                </AnimatePresence>
+            </AnimatePresence>
 
             <Link
                 href={`/${prevPhotoId}`}
